@@ -1,0 +1,8 @@
+.nav-bottom {
+  width: 60%;
+  display: block;
+  height: 80px;
+  margin: 0 auto;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  line-height: 80px; }

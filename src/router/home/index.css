@@ -1,0 +1,25 @@
+.page-home {
+  width: 100%; }
+  .page-home .page-header {
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-weight: 700;
+    font-size: 20px; }
+
+.page-list {
+  display: flex;
+  margin: 0 20px;
+  justify-content: space-between; }
+  .page-list .page-list-item {
+    flex: 2; }
+  .page-list .page-list-info {
+    flex: 1; }
+    .page-list .page-list-info .info-header {
+      float: right;
+      width: 250px;
+      height: 400px;
+      border: 1px solid #ddd; }
+
+.ant-list-item-action > li:hover {
+  color: #333; }
