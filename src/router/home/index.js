@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
-import { List, Avatar, Icon } from 'antd';
+import { List, Icon } from 'antd';
 import './index.css'
 
 const data = [
