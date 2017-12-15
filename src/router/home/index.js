@@ -60,11 +60,7 @@ const IconText = ({ type, text }) => (
                     </div>
                     <div className="page-list-info">
                         <div className="info-header">
-                            <code>
-                                git clone ssss
-
-                                cd ssss
-                            </code>
+                            <div className="info-img"><img src="./1.gif" alt="bash"/></div>
                         </div>
                     </div>
                 </div>

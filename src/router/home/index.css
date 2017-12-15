@@ -17,9 +17,47 @@
     flex: 1; }
     .page-list .page-list-info .info-header {
       float: right;
-      width: 250px;
-      height: 400px;
-      border: 1px solid #ddd; }
+      width: 290px;
+      height: 558px;
+      border: 1px solid #ddd;
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+      box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.4);
+      padding: 38px 20px 20px 20px;
+      background: #262b27; }
+      .page-list .page-list-info .info-header .info-img {
+        width: 246px;
+        height: 500px;
+        overflow: hidden; }
+      .page-list .page-list-info .info-header::before {
+        content: attr(data-rel);
+        height: 38px;
+        line-height: 38px;
+        background: #21252b;
+        color: #fff;
+        font-size: 16px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        font-family: 'Source Sans Pro',sans-serif;
+        font-weight: 700;
+        text-indent: 15px;
+        float: left; }
+      .page-list .page-list-info .info-header::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: #fc625d;
+        width: 12px;
+        height: 12px;
+        top: 0;
+        left: 20px;
+        margin-top: 13px;
+        -webkit-box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+        box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+        z-index: 3; }
 
 .ant-list-item-action > li:hover {
   color: #333; }
