@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { List, Icon } from 'antd';
 import './index.css'
 
-// const token = 'fe36d568ad79fd8cceda96c0abf4c13fe417ffdb';
-
 // const data = [
 // {
 //     title: 'webchat',
