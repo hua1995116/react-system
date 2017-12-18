@@ -1,6 +1,5 @@
 .project-page {
     .page-top {
-        min-height: 500px;
         display: flex;
         .project-page-header {
             flex: 2;
@@ -12,12 +11,28 @@
             .project-btn {
                 background: #57ab9c;
                 cursor: pointer;
+                transition: all 350ms;
+                &:hover {
+                    box-shadow: 0 0 13px 2px #57ab9c;
+                }
             }
         }
     }
-    // .page-middle {
-
-    // }
+    .page-middle {
+        height: 600px;
+        .middle-slope {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            .middle-slope-scope {
+                width: 0;
+                height: 0;
+                border-width: 300px 2000px 0 0;
+                border-color: transparent #57ab9c transparent transparent;
+                border-style: solid;
+            }
+        }
+    }
     .label {
         display: block;
         margin: 10px 0;
@@ -33,7 +48,7 @@
     text-align: center;
     line-height: 50px;
     font-size: 16px;
-    box-shadow: 0 0 8px 0px #000;
+    box-shadow: 0 0 8px 0px #57ab9c;
 }
 
 .waveTop {
@@ -61,6 +76,7 @@
 }
 
 .waveWrapper {
+    overflow: hidden;
     position: relative;
     width: 100%;
     height: 300px;

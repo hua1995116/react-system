@@ -6,7 +6,8 @@ class BottomNav extends React.Component {
         return (
             <div className="nav-bottom">
                <div>
-                   @秋风出品
+                   <p>©2017-前端发布系统</p>
+                   <p><a href="https://github.com/hua1995116">秋风出品</a></p>
                </div>
             </div>
         )

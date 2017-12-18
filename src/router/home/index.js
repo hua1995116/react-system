@@ -1,31 +1,33 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import { observer,inject } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import { List, Icon } from 'antd';
 import './index.css'
 
-const data = [
-{
-    title: 'webchat',
-    type: 'Javascript',
-    description: '基于vue2.0的实时聊天项目'
-},
-{
-    title: 'musiccloudWebapp',
-    type: 'Vue',
-    description: 'vuejs仿网易云音乐'
-},
-{
-    title: 'react-shopping',
-    type: 'JavaScript ',
-    description: '基于react的购物车实战项目'
-},
-{
-    title: 'myblog',
-    type: 'HTML',
-    description: 'a blog for hua1995116.'
-},
-];
+// const token = 'fe36d568ad79fd8cceda96c0abf4c13fe417ffdb';
+
+// const data = [
+// {
+//     title: 'webchat',
+//     type: 'Javascript',
+//     description: '基于vue2.0的实时聊天项目'
+// },
+// {
+//     title: 'musiccloudWebapp',
+//     type: 'Vue',
+//     description: 'vuejs仿网易云音乐'
+// },
+// {
+//     title: 'react-shopping',
+//     type: 'JavaScript ',
+//     description: '基于react的购物车实战项目'
+// },
+// {
+//     title: 'myblog',
+//     type: 'HTML',
+//     description: 'a blog for hua1995116.'
+// },
+// ];
 
 const IconText = ({ type, text }) => (
     <span>
@@ -34,8 +36,17 @@ const IconText = ({ type, text }) => (
     </span>
 );
 
-@observer class Home extends React.Component{
+@inject('userInfo') @observer class Home extends React.Component{
+    constructor(props){
+		super(props)
+	}
+    componentWillMount(){
+        let {fetchUserInfo} = this.props.userInfo;
+		fetchUserInfo();
+    }
     render () {
+        let {userInfo} = this.props;
+        let {data} = userInfo;
         return (
             <div className="page-home">
                 <div className="page-header">
@@ -48,10 +59,10 @@ const IconText = ({ type, text }) => (
                             dataSource={data}
                             renderItem={item => (
                             <List.Item
-                                actions={[<IconText type="tag" text={item.type} />, <IconText type="star" text="156" />, <IconText type="fork" text="2" />]}
+                                actions={[<IconText type="tag" text={item.language} />, <IconText type="star" text={item.stargazers_count} />, <IconText type="fork" text={item.forks} />]}
                                 >
                                 <List.Item.Meta
-                                title={<Link to="/project">{item.title}</Link>}
+                                title={<Link to="/project">{item.name}</Link>}
                                 description={item.description}
                                 />
                             </List.Item>

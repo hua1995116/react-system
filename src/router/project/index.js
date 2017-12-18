@@ -1,6 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Select, Input  } from 'antd';
+import { Link } from 'react-router-dom';
+import { Select, Input,Breadcrumb } from 'antd';
 import './index.css';
 const Option = Select.Option;
 
@@ -29,6 +30,10 @@ const data = [
                 <div className="page-top">
                     <div className="project-page-header">
                         <header>
+                            <Breadcrumb>
+                                <Breadcrumb.Item><Link to="/">首页</Link></Breadcrumb.Item>
+                                <Breadcrumb.Item>发布页面</Breadcrumb.Item>
+                            </Breadcrumb>
                             <h1>webchat</h1>
                         </header>
                         <ul>
@@ -49,7 +54,6 @@ const data = [
                                 <Input placeholder="输入目录" />
                             </li>
                         </ul>
-                    
                     </div>
                     <div className="project-page-tool">
                         <div className="btn project-btn">
@@ -58,17 +62,20 @@ const data = [
                     </div>
                 </div>
                 <div className="page-middle">
-                <div className="waveWrapper waveAnimation">
-                    <div className="waveWrapperInner bgTop">
-                        <div className="wave waveTop"></div>
+                    <div className="middle-slope">
+                        <div className="middle-slope-scope"></div>
                     </div>
-                    <div className="waveWrapperInner bgMiddle">
-                        <div className="wave waveMiddle"></div>
+                    <div className="waveWrapper waveAnimation">
+                        <div className="waveWrapperInner bgTop">
+                            <div className="wave waveTop"></div>
+                        </div>
+                        <div className="waveWrapperInner bgMiddle">
+                            <div className="wave waveMiddle"></div>
+                        </div>
+                        <div className="waveWrapperInner bgBottom">
+                            <div className="wave waveBottom"></div>
+                        </div>
                     </div>
-                    <div className="waveWrapperInner bgBottom">
-                        <div className="wave waveBottom"></div>
-                    </div>
-                </div>
                 </div>
             </div>
         )
