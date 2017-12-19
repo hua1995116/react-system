@@ -1,30 +1,53 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import { Select, Input,Breadcrumb } from 'antd';
 import './index.css';
 const Option = Select.Option;
 
-const data = [
-    {
-        key: 'master',
-        value: 'master',
-    },
-    {
-        key: 'dev',
-        value: 'dev',
-    },
-    {
-        key: 'feature-fix',
-        value: 'feature-fix',
-    }
-]
+// const data = [
+//     {
+//         key: 'master',
+//         value: 'master',
+//     },
+//     {
+//         key: 'dev',
+//         value: 'dev',
+//     },
+//     {
+//         key: 'feature-fix',
+//         value: 'feature-fix',
+//     }
+// ]
 
-@observer class Project extends React.Component {
+@inject('project') @observer class Project extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            branch: 'master',
+        }
+	}
     handleChange(value) {
-        console.log(`selected ${value}`);
+        // console.log(`selected ${value}`);
+        this.setState({branch: value});
+    }
+    componentWillMount(props){
+        let {fetchProject} = this.props.project;
+        let { hash } = window.location;
+		fetchProject(hash.replace('#', ''));
+    }
+    handlePublish() {
+        let {fetchPublish} = this.props.project;
+        let { hash } = window.location;
+        let name = hash.replace('#', '');
+        let branch = this.state.branch;
+        fetchPublish(name, branch)
+        // console.log(this.state.branch);
     }
     render() {
+        let {project} = this.props;
+        let {data} = project;
+        let { hash } = window.location;
         return (
             <div className="project-page">
                 <div className="page-top">
@@ -34,14 +57,14 @@ const data = [
                                 <Breadcrumb.Item><Link to="/">首页</Link></Breadcrumb.Item>
                                 <Breadcrumb.Item>发布页面</Breadcrumb.Item>
                             </Breadcrumb>
-                            <h1>webchat</h1>
+                            <h1>{hash}</h1>
                         </header>
                         <ul>
                             <li>
                                 <span className="label">选择分支: </span>
-                                <Select defaultValue="master" style={{ width: 120 }} onChange={this.handleChange}>
+                                <Select defaultValue="master" style={{ width: 120 }} onChange={this.handleChange.bind(this)}>
                                 {data.map((item, index) => {
-                                    return <Option key={index} value={item.value}>{item.key}</Option>
+                                    return <Option key={index} value={item.name}>{item.name}</Option>
                                 })}
                                 </Select>
                             </li>
@@ -56,7 +79,7 @@ const data = [
                         </ul>
                     </div>
                     <div className="project-page-tool">
-                        <div className="btn project-btn">
+                        <div className="btn project-btn" onClick={this.handlePublish.bind(this)}>
                             发布
                         </div>
                     </div>

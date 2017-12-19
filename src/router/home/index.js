@@ -60,7 +60,10 @@ const IconText = ({ type, text }) => (
                                 actions={[<IconText type="tag" text={item.language} />, <IconText type="star" text={item.stargazers_count} />, <IconText type="fork" text={item.forks} />]}
                                 >
                                 <List.Item.Meta
-                                title={<Link to="/project">{item.name}</Link>}
+                                title={<Link to={{
+                                    pathname: '/project',
+                                    hash: item['name'],
+                                }}>{item.name}</Link>}
                                 description={item.description}
                                 />
                             </List.Item>
