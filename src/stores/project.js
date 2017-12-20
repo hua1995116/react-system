@@ -6,6 +6,7 @@ class project {
     @observable state;
     constructor() {
         this.data = [];
+        this.state = 0;
     }
     @action fetchProject = (name) => {
         let fetchURL = `/api/branches`;
@@ -24,19 +25,21 @@ class project {
     }
     @action fetchPublish = (name, branch) => {
         let fetchURL = `/api/build`;
-        axios.get(`${fetchURL}?name=${name}&branch=${branch}`)
-        .then(
+        this.state = -1;
+        axios.get(`${fetchURL}?name=${name}&branch=${branch}`).then(
             action("fetchPublish_sucess", (res) => {
-                this.state = 1;
-            })
+            this.state = 0;
+        })
         )
         .catch(
             action("fetchPublish_error", (err) => {
-                this.state = -1;
-            })
+            this.state = 0;
+        })
         )
+            
     }
 }
+
 
 const projectObj = new project();
 

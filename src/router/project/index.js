@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { Link } from 'react-router-dom';
-import { Select, Input,Breadcrumb } from 'antd';
+import { Select, Input,Breadcrumb, Icon, notification  } from 'antd';
 import './index.css';
 const Option = Select.Option;
 
@@ -37,17 +37,32 @@ const Option = Select.Option;
 		fetchProject(hash.replace('#', ''));
     }
     handlePublish() {
-        let {fetchPublish} = this.props.project;
-        let { hash } = window.location;
-        let name = hash.replace('#', '');
-        let branch = this.state.branch;
-        fetchPublish(name, branch)
-        // console.log(this.state.branch);
+        let {fetchPublish, state} = this.props.project;
+        if(state === 0) {
+            let { hash } = window.location;
+            let name = hash.replace('#', '');
+            let branch = this.state.branch;
+            fetchPublish(name, branch);
+            // const c = await fetchPublish(name, branch);
+            // console.log(c);
+            // console.log(this.state.branch);
+        } else if (state === -1) {
+            notification.open({
+                message: '提示',
+                description: '发布中，别急，再等等~',
+            });
+        }
     }
     render() {
         let {project} = this.props;
-        let {data} = project;
+        let {data , state} = project;
         let { hash } = window.location;
+        let stateText;
+        if(state === 0) {
+            stateText = '发布'
+        } else if (state === -1) {
+            stateText = <div><Icon type="loading" />&nbsp;&nbsp;发布中</div>
+        }
         return (
             <div className="project-page">
                 <div className="page-top">
@@ -80,7 +95,7 @@ const Option = Select.Option;
                     </div>
                     <div className="project-page-tool">
                         <div className="btn project-btn" onClick={this.handlePublish.bind(this)}>
-                            发布
+                            {stateText}
                         </div>
                     </div>
                 </div>
