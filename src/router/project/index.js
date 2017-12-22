@@ -36,16 +36,29 @@ const Option = Select.Option;
         let { hash } = window.location;
 		fetchProject(hash.replace('#', ''));
     }
-    handlePublish() {
-        let {fetchPublish, state} = this.props.project;
+    async handlePublish() {
+        let {handleState, fetchPublish, state} = this.props.project;
         if(state === 0) {
             let { hash } = window.location;
             let name = hash.replace('#', '');
             let branch = this.state.branch;
-            fetchPublish(name, branch);
-            // const c = await fetchPublish(name, branch);
-            // console.log(c);
-            // console.log(this.state.branch);
+            const res = await fetchPublish(name, branch);
+            const code = res.data.code;
+            if(code === 200) {
+                handleState(0);
+                notification['success']({
+                    message: '提示',
+                    description: '恭喜,发布成功！',
+                });
+            } else if (code === 100){
+                handleState(0);
+                notification['error']({
+                    message: '提示',
+                    description: '很抱歉,发布失败',
+                });
+            }
+            console.log(res);
+           
         } else if (state === -1) {
             notification.open({
                 message: '提示',
